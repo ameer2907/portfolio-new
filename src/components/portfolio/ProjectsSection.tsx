@@ -33,7 +33,14 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <JourneyStop id="projects" icon="🚀" title="Projects" subtitle="Ideas brought to life">
+    <JourneyStop
+      id="projects"
+      icon="🚀"
+      title="Projects"
+      subtitle="Ideas brought to life"
+      direction="right"
+      stopNumber={4}
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, i) => (
           <div key={i} className="glass-hover rounded-2xl p-6 flex flex-col">

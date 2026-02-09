@@ -3,7 +3,14 @@ import { Briefcase, BookOpen } from "lucide-react";
 
 const ExperienceSection = () => {
   return (
-    <JourneyStop id="experience" icon="💼" title="Experience" subtitle="Learning and growing professionally">
+    <JourneyStop
+      id="experience"
+      icon="💼"
+      title="Experience"
+      subtitle="Learning and growing professionally"
+      direction="left"
+      stopNumber={5}
+    >
       <div className="max-w-3xl mx-auto space-y-6">
         {/* Internship */}
         <div className="glass-hover rounded-2xl p-6">

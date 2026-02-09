@@ -3,7 +3,14 @@ import JourneyStop from "./JourneyStop";
 
 const EducationSection = () => {
   return (
-    <JourneyStop id="education" icon="📚" title="Education" subtitle="The foundation of the journey">
+    <JourneyStop
+      id="education"
+      icon="📚"
+      title="Education"
+      subtitle="The foundation of the journey"
+      direction="left"
+      stopNumber={1}
+    >
       <div className="max-w-2xl mx-auto">
         <div className="glass-hover rounded-2xl p-8">
           <div className="flex items-start gap-4">

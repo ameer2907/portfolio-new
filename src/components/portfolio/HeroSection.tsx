@@ -1,4 +1,4 @@
-import { Bus, ChevronDown } from "lucide-react";
+import { Bus, ChevronDown, MapPin } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -10,10 +10,29 @@ const HeroSection = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.02] blur-3xl" />
       </div>
 
+      {/* Animated road lines in background */}
+      <div className="absolute inset-0 overflow-hidden opacity-10">
+        <div className="absolute left-1/4 top-0 bottom-0 w-px border-l border-dashed border-primary animate-road-scroll" />
+        <div className="absolute right-1/3 top-0 bottom-0 w-px border-l border-dashed border-primary animate-road-scroll" style={{ animationDelay: "1s" }} />
+      </div>
+
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-        {/* Bus Icon */}
-        <div className="mb-8 inline-flex items-center justify-center w-20 h-20 rounded-2xl glass glow animate-bus-bounce">
-          <Bus className="w-10 h-10 text-primary" />
+        {/* Bus Depot Sign */}
+        <div className="mb-6 inline-flex flex-col items-center">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground font-heading uppercase tracking-widest mb-3">
+            <MapPin className="w-3 h-3 text-primary" />
+            Bus Depot — Starting Point
+          </div>
+          <div className="w-20 h-20 rounded-2xl glass glow animate-bus-bounce relative">
+            <div className="w-full h-full flex items-center justify-center">
+              <Bus className="w-10 h-10 text-primary" />
+            </div>
+            {/* Exhaust particles */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary/20 animate-pulse" />
+              <div className="w-1 h-1 rounded-full bg-primary/10 animate-pulse" style={{ animationDelay: "0.3s" }} />
+            </div>
+          </div>
         </div>
 
         <p className="text-primary font-heading font-medium tracking-widest uppercase text-sm mb-4">
@@ -42,9 +61,10 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => document.getElementById("education")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-8 py-3 bg-primary text-primary-foreground font-heading font-semibold rounded-lg glow hover:shadow-[0_0_30px_hsla(190,100%,50%,0.5)] transition-all duration-300"
+            className="px-8 py-3 bg-primary text-primary-foreground font-heading font-semibold rounded-lg glow hover:shadow-[0_0_30px_hsla(190,100%,50%,0.5)] transition-all duration-300 group"
           >
-            Start the Journey 🚌
+            Start the Journey
+            <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">🚌</span>
           </button>
           <a
             href="/resume.pdf"
@@ -55,8 +75,12 @@ const HeroSection = () => {
           </a>
         </div>
 
-        <div className="mt-16 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-muted-foreground mx-auto" />
+        {/* Scroll hint with road-like animation */}
+        <div className="mt-16 flex flex-col items-center gap-2">
+          <div className="w-5 h-9 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-1.5">
+            <div className="w-1 h-2 rounded-full bg-primary animate-scroll-hint" />
+          </div>
+          <ChevronDown className="w-4 h-4 text-muted-foreground animate-bounce" />
         </div>
       </div>
     </section>
