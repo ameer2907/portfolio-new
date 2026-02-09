@@ -31,7 +31,14 @@ const skillCategories = [
 
 const SkillsSection = () => {
   return (
-    <JourneyStop id="skills" icon="🛠️" title="Technical Skills" subtitle="Tools and technologies in my toolkit">
+    <JourneyStop
+      id="skills"
+      icon="🛠️"
+      title="Technical Skills"
+      subtitle="Tools and technologies in my toolkit"
+      direction="right"
+      stopNumber={2}
+    >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((cat) => (
           <div key={cat.title} className="glass-hover rounded-2xl p-6">

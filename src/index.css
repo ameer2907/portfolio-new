@@ -118,6 +118,17 @@
   50% { transform: translateY(-10px); }
 }
 
+@keyframes scroll-hint {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(6px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes road-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 40px; }
+}
+
 .animate-bus-bounce {
   animation: bus-bounce 1s ease-in-out infinite;
 }
@@ -128,6 +139,14 @@
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+.animate-scroll-hint {
+  animation: scroll-hint 1.5s ease-in-out infinite;
+}
+
+.animate-road-scroll {
+  animation: road-scroll 1s linear infinite;
 }
 
 html {
