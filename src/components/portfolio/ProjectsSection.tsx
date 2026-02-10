@@ -38,7 +38,6 @@ const ProjectsSection = () => {
       icon="🚀"
       title="Projects"
       subtitle="Ideas brought to life"
-      direction="right"
       stopNumber={4}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -8,7 +8,6 @@ const ExperienceSection = () => {
       icon="💼"
       title="Experience"
       subtitle="Learning and growing professionally"
-      direction="left"
       stopNumber={5}
     >
       <div className="max-w-3xl mx-auto space-y-6">
