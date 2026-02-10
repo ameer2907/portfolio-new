@@ -17,19 +17,19 @@ const Index = () => {
       <Navbar />
       <RoadMap />
       <HeroSection />
-      <RoadConnector direction="left" />
+      <RoadConnector direction="left" variant="curve" distance="2 km" />
       <EducationSection />
-      <RoadConnector direction="right" />
+      <RoadConnector direction="right" variant="hill" label="uphill ahead" distance="4 km" />
       <SkillsSection />
-      <RoadConnector direction="left" />
+      <RoadConnector direction="left" variant="hairpin" distance="7 km" />
       <CertificationsSection />
-      <RoadConnector direction="right" />
+      <RoadConnector direction="right" variant="zigzag" label="winding road" distance="11 km" />
       <ProjectsSection />
-      <RoadConnector direction="left" />
+      <RoadConnector direction="left" variant="bridge" distance="14 km" />
       <ExperienceSection />
-      <RoadConnector direction="right" />
+      <RoadConnector direction="right" variant="curve" distance="17 km" />
       <FutureVision />
-      <RoadConnector direction="left" />
+      <RoadConnector direction="left" variant="hill" label="final approach" distance="20 km" />
       <ContactSection />
       <Footer />
     </div>
