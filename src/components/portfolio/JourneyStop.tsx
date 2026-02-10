@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { Bus } from "lucide-react";
 
 interface JourneyStopProps {
   id: string;
@@ -22,41 +23,51 @@ const JourneyStop = ({
 }: JourneyStopProps) => {
   const ref = useScrollReveal();
 
-  const alignClass =
-    direction === "left"
-      ? "md:mr-auto md:pr-8"
-      : direction === "right"
-      ? "md:ml-auto md:pl-8"
-      : "";
-
   return (
-    <section id={id} className="relative py-16 md:py-20 px-4">
-      <div ref={ref} className={`section-fade max-w-6xl mx-auto ${alignClass}`}>
-        {/* Stop marker with road sign styling */}
+    <section id={id} className="relative py-16 md:py-24 px-4">
+      {/* Road lane running through the section */}
+      <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px border-l border-dashed border-primary/10 hidden md:block" />
+
+      <div
+        ref={ref}
+        className={`section-fade max-w-6xl mx-auto ${
+          direction === "left"
+            ? "md:mr-[10%] md:ml-auto"
+            : direction === "right"
+            ? "md:ml-[10%] md:mr-auto"
+            : ""
+        }`}
+      >
+        {/* Bus stop sign */}
         <div className="flex flex-col items-center mb-10 relative">
-          {/* Stop number badge */}
+          {/* Stop number plate */}
           {stopNumber !== undefined && (
-            <div className="absolute -top-3 -right-3 w-7 h-7 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
-              <span className="text-[10px] font-heading font-bold text-primary">
-                {stopNumber}
-              </span>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="h-px w-8 bg-primary/20" />
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+                <Bus className="w-3 h-3 text-primary" />
+                <span className="text-[10px] font-heading font-bold text-primary tracking-wider">
+                  STOP {stopNumber}
+                </span>
+              </div>
+              <div className="h-px w-8 bg-primary/20" />
             </div>
           )}
 
-          {/* Sign post */}
+          {/* Icon sign post */}
           <div className="relative">
-            <div className="w-16 h-16 rounded-2xl glass glow-sm flex items-center justify-center text-3xl mb-1 group-hover:scale-110 transition-transform">
+            <div className="w-16 h-16 rounded-2xl glass glow-sm flex items-center justify-center text-3xl transition-transform hover:scale-110 duration-300">
               {icon}
             </div>
-            {/* Post */}
-            <div className="w-0.5 h-4 bg-primary/30 mx-auto" />
+            {/* Post connecting to ground */}
+            <div className="w-0.5 h-6 bg-gradient-to-b from-primary/30 to-transparent mx-auto" />
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-gradient text-center mt-2">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-muted-foreground mt-2 text-center max-w-md">{subtitle}</p>
+            <p className="text-muted-foreground mt-2 text-center max-w-md text-sm">{subtitle}</p>
           )}
         </div>
 
