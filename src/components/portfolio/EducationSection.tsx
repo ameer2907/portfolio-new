@@ -8,7 +8,6 @@ const EducationSection = () => {
       icon="📚"
       title="Education"
       subtitle="The foundation of the journey"
-      direction="left"
       stopNumber={1}
     >
       <div className="max-w-2xl mx-auto">

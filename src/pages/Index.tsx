@@ -1,7 +1,6 @@
 import Navbar from "@/components/portfolio/Navbar";
 import RoadMap from "@/components/portfolio/RoadMap";
 import HeroSection from "@/components/portfolio/HeroSection";
-import RoadConnector from "@/components/portfolio/RoadConnector";
 import EducationSection from "@/components/portfolio/EducationSection";
 import SkillsSection from "@/components/portfolio/SkillsSection";
 import CertificationsSection from "@/components/portfolio/CertificationsSection";
@@ -10,27 +9,64 @@ import ExperienceSection from "@/components/portfolio/ExperienceSection";
 import FutureVision from "@/components/portfolio/FutureVision";
 import ContactSection from "@/components/portfolio/ContactSection";
 import Footer from "@/components/portfolio/Footer";
+import GameRoad from "@/components/portfolio/GameRoad";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
       <Navbar />
       <RoadMap />
+
+      {/* Continuous winding road background */}
+      <GameRoad />
+
       <HeroSection />
-      <RoadConnector direction="left" variant="curve" distance="2 km" />
-      <EducationSection />
-      <RoadConnector direction="right" variant="hill" label="uphill ahead" distance="4 km" />
-      <SkillsSection />
-      <RoadConnector direction="left" variant="hairpin" distance="7 km" />
-      <CertificationsSection />
-      <RoadConnector direction="right" variant="zigzag" label="winding road" distance="11 km" />
-      <ProjectsSection />
-      <RoadConnector direction="left" variant="bridge" distance="14 km" />
-      <ExperienceSection />
-      <RoadConnector direction="right" variant="curve" distance="17 km" />
-      <FutureVision />
-      <RoadConnector direction="left" variant="hill" label="final approach" distance="20 km" />
-      <ContactSection />
+
+      {/* Sections placed on alternating sides of the road */}
+      <div className="relative z-10">
+        <div className="md:flex md:justify-start">
+          <div className="md:w-[55%] md:ml-[5%]">
+            <EducationSection />
+          </div>
+        </div>
+
+        <div className="md:flex md:justify-end">
+          <div className="md:w-[55%] md:mr-[5%]">
+            <SkillsSection />
+          </div>
+        </div>
+
+        <div className="md:flex md:justify-start">
+          <div className="md:w-[55%] md:ml-[5%]">
+            <CertificationsSection />
+          </div>
+        </div>
+
+        <div className="md:flex md:justify-end">
+          <div className="md:w-[55%] md:mr-[5%]">
+            <ProjectsSection />
+          </div>
+        </div>
+
+        <div className="md:flex md:justify-start">
+          <div className="md:w-[55%] md:ml-[5%]">
+            <ExperienceSection />
+          </div>
+        </div>
+
+        <div className="md:flex md:justify-end">
+          <div className="md:w-[55%] md:mr-[5%]">
+            <FutureVision />
+          </div>
+        </div>
+
+        <div className="md:flex md:justify-start">
+          <div className="md:w-[55%] md:ml-[5%]">
+            <ContactSection />
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </div>
   );
