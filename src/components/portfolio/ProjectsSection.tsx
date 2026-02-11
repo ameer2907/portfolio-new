@@ -31,7 +31,7 @@ const projects = [
   },
 ];
 
-const ProjectsSection = () => {
+const ProjectsSection = ({ isActive }: { isActive?: boolean }) => {
   return (
     <JourneyStop
       id="projects"
@@ -39,6 +39,7 @@ const ProjectsSection = () => {
       title="Projects"
       subtitle="Ideas brought to life"
       stopNumber={4}
+      isActive={isActive}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, i) => (

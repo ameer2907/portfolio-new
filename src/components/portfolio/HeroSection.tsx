@@ -1,4 +1,5 @@
 import { Bus, ChevronDown, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
@@ -10,55 +11,95 @@ const HeroSection = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.02] blur-3xl" />
       </div>
 
-      {/* Animated road lines in background */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        <div className="absolute left-1/4 top-0 bottom-0 w-px border-l border-dashed border-primary animate-road-scroll" />
-        <div className="absolute right-1/3 top-0 bottom-0 w-px border-l border-dashed border-primary animate-road-scroll" style={{ animationDelay: "1s" }} />
-      </div>
-
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
         {/* Bus Depot Sign */}
-        <div className="mb-6 inline-flex flex-col items-center">
+        <motion.div
+          className="mb-6 inline-flex flex-col items-center"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="flex items-center gap-2 text-xs text-muted-foreground font-heading uppercase tracking-widest mb-3">
             <MapPin className="w-3 h-3 text-primary" />
             Bus Depot — Starting Point
           </div>
-          <div className="w-20 h-20 rounded-2xl glass glow animate-bus-bounce relative">
+          <motion.div
+            className="w-20 h-20 rounded-2xl glass glow relative"
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
             <div className="w-full h-full flex items-center justify-center">
               <Bus className="w-10 h-10 text-primary" />
             </div>
-            {/* Exhaust particles */}
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary/20 animate-pulse" />
-              <div className="w-1 h-1 rounded-full bg-primary/10 animate-pulse" style={{ animationDelay: "0.3s" }} />
+              <motion.div
+                className="w-1.5 h-1.5 rounded-full bg-primary/20"
+                animate={{ opacity: [0.2, 0.5, 0.2] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              />
+              <motion.div
+                className="w-1 h-1 rounded-full bg-primary/10"
+                animate={{ opacity: [0.1, 0.3, 0.1] }}
+                transition={{ duration: 1, repeat: Infinity, delay: 0.3 }}
+              />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <p className="text-primary font-heading font-medium tracking-widest uppercase text-sm mb-4">
+        <motion.p
+          className="text-primary font-heading font-medium tracking-widest uppercase text-sm mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
           Welcome Aboard
-        </p>
+        </motion.p>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold mb-4 leading-tight">
+        <motion.h1
+          className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold mb-4 leading-tight"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           K. Ameer{" "}
           <span className="text-gradient">Malik Bahad</span>
-        </h1>
+        </motion.h1>
 
-        <p className="text-xl sm:text-2xl text-muted-foreground font-heading mb-2">
+        <motion.p
+          className="text-xl sm:text-2xl text-muted-foreground font-heading mb-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
           B.Tech CSE – Data Science & AI
-        </p>
+        </motion.p>
 
-        <p className="text-lg text-primary/80 font-medium italic mb-6">
+        <motion.p
+          className="text-lg text-primary/80 font-medium italic mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+        >
           "Turning Ideas into Interfaces"
-        </p>
+        </motion.p>
 
-        <p className="text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          An aspiring AI Engineer with a passion for building intelligent systems. 
-          Skilled in Python, Java, AI/ML, and data analysis — ready to create real-world 
+        <motion.p
+          className="text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
+          An aspiring AI Engineer with a passion for building intelligent systems.
+          Skilled in Python, Java, AI/ML, and data analysis — ready to create real-world
           solutions for smart cities and sustainability.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
+        >
           <button
             onClick={() => document.getElementById("education")?.scrollIntoView({ behavior: "smooth" })}
             className="px-8 py-3 bg-primary text-primary-foreground font-heading font-semibold rounded-lg glow hover:shadow-[0_0_30px_hsla(190,100%,50%,0.5)] transition-all duration-300 group"
@@ -73,15 +114,24 @@ const HeroSection = () => {
           >
             Download Resume
           </a>
-        </div>
+        </motion.div>
 
-        {/* Scroll hint with road-like animation */}
-        <div className="mt-16 flex flex-col items-center gap-2">
+        {/* Scroll hint */}
+        <motion.div
+          className="mt-16 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+        >
           <div className="w-5 h-9 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-1.5">
-            <div className="w-1 h-2 rounded-full bg-primary animate-scroll-hint" />
+            <motion.div
+              className="w-1 h-2 rounded-full bg-primary"
+              animate={{ y: [0, 6, 0], opacity: [1, 0.3, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
           </div>
           <ChevronDown className="w-4 h-4 text-muted-foreground animate-bounce" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

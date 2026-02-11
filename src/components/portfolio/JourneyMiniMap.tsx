@@ -1,5 +1,5 @@
+import { motion } from "framer-motion";
 import { Bus } from "lucide-react";
-import useScrollSpy from "@/hooks/useScrollSpy";
 
 const stops = [
   { id: "hero", label: "Depot", emoji: "🏁" },
@@ -12,82 +12,93 @@ const stops = [
   { id: "contact", label: "Contact", emoji: "📬" },
 ];
 
-// Pre-calculated positions on the winding path
 const positions = [
-  { x: 50, y: 15 },
-  { x: 80, y: 80 },
-  { x: 20, y: 150 },
-  { x: 80, y: 220 },
-  { x: 20, y: 290 },
-  { x: 80, y: 360 },
-  { x: 20, y: 430 },
-  { x: 50, y: 500 },
+  { x: 55, y: 20 },
+  { x: 85, y: 75 },
+  { x: 20, y: 135 },
+  { x: 85, y: 195 },
+  { x: 20, y: 255 },
+  { x: 85, y: 315 },
+  { x: 20, y: 375 },
+  { x: 55, y: 435 },
 ];
 
-const pathHeight = 520;
+const pathHeight = 460;
 const pathD = `
-  M 50 15
-  C 50 35, 80 55, 80 80
-  C 80 105, 20 120, 20 150
-  C 20 175, 80 190, 80 220
-  C 80 245, 20 260, 20 290
-  C 20 315, 80 330, 80 360
-  C 80 385, 20 400, 20 430
-  C 20 455, 50 480, 50 500
+  M 55 20
+  C 55 40, 85 55, 85 75
+  C 85 95, 20 110, 20 135
+  C 20 155, 85 170, 85 195
+  C 85 215, 20 230, 20 255
+  C 20 275, 85 290, 85 315
+  C 85 335, 20 350, 20 375
+  C 20 400, 55 415, 55 435
 `;
 
-const RoadMap = () => {
-  const { scrollProgress, activeSection } = useScrollSpy(stops.map((s) => s.id));
+interface JourneyMiniMapProps {
+  scrollProgress: number;
+  activeSection: string;
+}
 
+const JourneyMiniMap = ({ scrollProgress, activeSection }: JourneyMiniMapProps) => {
   return (
     <div className="fixed right-2 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center">
-      <div className="relative" style={{ width: 110, height: pathHeight }}>
+      <div className="relative" style={{ width: 115, height: pathHeight }}>
         <svg
-          id="road-svg"
-          width="110"
+          width="115"
           height={pathHeight}
-          viewBox={`0 0 110 ${pathHeight}`}
+          viewBox={`0 0 115 ${pathHeight}`}
           fill="none"
           className="absolute inset-0"
         >
-          {/* Road surface */}
-          <path d={pathD} stroke="hsl(var(--muted))" strokeWidth="14" strokeLinecap="round" fill="none" />
-          {/* Road edges */}
-          <path d={pathD} stroke="hsl(var(--border))" strokeWidth="16" strokeLinecap="round" fill="none" opacity="0.2" />
-          {/* Center dashes */}
+          {/* Road */}
+          <path d={pathD} stroke="hsl(var(--border))" strokeWidth="16" strokeLinecap="round" fill="none" opacity="0.15" />
+          <path d={pathD} stroke="hsl(var(--muted))" strokeWidth="12" strokeLinecap="round" fill="none" />
           <path d={pathD} stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="5 5" fill="none" opacity="0.3" />
+
           {/* Progress glow */}
           <path
-            id="road-path"
+            id="minimap-path"
             d={pathD}
             stroke="hsl(var(--primary))"
             strokeWidth="4"
             strokeLinecap="round"
             fill="none"
+            strokeDasharray="1200"
+            strokeDashoffset={1200 - (scrollProgress / 100) * 1200}
             className="transition-all duration-700"
-            strokeDasharray="1000"
-            strokeDashoffset={1000 - (scrollProgress / 100) * 1000}
             style={{ filter: "drop-shadow(0 0 6px hsl(var(--primary) / 0.6))" }}
           />
 
           {/* Stop markers */}
           {stops.map((stop, i) => {
             const pos = positions[i];
-            const progress = i / (stops.length - 1);
             const isActive = activeSection === stop.id;
+            const progress = i / (stops.length - 1);
             const isPassed = scrollProgress / 100 >= progress - 0.02;
 
             return (
               <g key={stop.id}>
+                {isActive && (
+                  <motion.circle
+                    cx={pos.x}
+                    cy={pos.y}
+                    r={14}
+                    fill="hsl(var(--primary))"
+                    opacity={0.15}
+                    animate={{ r: [14, 18, 14], opacity: [0.15, 0.08, 0.15] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                )}
                 <circle
                   cx={pos.x}
                   cy={pos.y}
-                  r={isActive ? 9 : 5}
+                  r={isActive ? 8 : 5}
                   fill={isPassed ? "hsl(var(--primary))" : "hsl(var(--muted))"}
                   stroke={isActive ? "hsl(var(--primary))" : "transparent"}
                   strokeWidth="2"
                   className="transition-all duration-300"
-                  style={isActive ? { filter: "drop-shadow(0 0 10px hsl(var(--primary) / 0.8))" } : {}}
+                  style={isActive ? { filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.8))" } : {}}
                 />
                 {isActive && (
                   <circle cx={pos.x} cy={pos.y} r={3} fill="hsl(var(--primary-foreground))" />
@@ -95,13 +106,6 @@ const RoadMap = () => {
               </g>
             );
           })}
-
-          {/* Tiny scenery decorations */}
-          <circle cx="5" cy="115" r="3" fill="hsl(var(--primary))" opacity="0.06" />
-          <rect x="95" y="185" width="3" height="12" rx="1" fill="hsl(var(--primary))" opacity="0.08" />
-          <circle cx="100" y="180" r="5" fill="hsl(var(--primary))" opacity="0.04" />
-          <rect x="5" y="340" width="2" height="15" rx="1" fill="hsl(var(--muted-foreground))" opacity="0.1" />
-          <circle cx="6" cy="335" r="3" fill="hsl(var(--primary))" opacity="0.08" />
         </svg>
 
         {/* Labels */}
@@ -119,7 +123,7 @@ const RoadMap = () => {
               }`}
               style={{
                 top: pos.y - 6,
-                ...(isRight ? { right: 4 } : { left: -2 }),
+                ...(isRight ? { right: 2 } : { left: -2 }),
               }}
             >
               <span className="mr-0.5">{stop.emoji}</span>
@@ -128,22 +132,27 @@ const RoadMap = () => {
           );
         })}
 
-        {/* Bus */}
-        <BusOnPath progress={scrollProgress} />
+        {/* Mini bus */}
+        <MiniMapBus progress={scrollProgress} />
       </div>
 
-      <div className="mt-3 flex flex-col items-center">
+      {/* Progress counter */}
+      <motion.div
+        className="mt-3 flex flex-col items-center"
+        animate={{ opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      >
         <span className="text-xs text-primary font-heading font-bold">{Math.round(scrollProgress)}%</span>
         <span className="text-[9px] text-muted-foreground">journey</span>
-      </div>
+      </motion.div>
     </div>
   );
 };
 
-const BusOnPath = ({ progress }: { progress: number }) => {
+const MiniMapBus = ({ progress }: { progress: number }) => {
   const getPosition = () => {
-    const path = document.querySelector("#road-path") as SVGPathElement;
-    if (!path) return { x: 50, y: 15, angle: 90 };
+    const path = document.querySelector("#minimap-path") as SVGPathElement;
+    if (!path) return { x: 55, y: 20, angle: 90 };
     const length = path.getTotalLength();
     const point = path.getPointAtLength((progress / 100) * length);
     const delta = 2;
@@ -156,19 +165,20 @@ const BusOnPath = ({ progress }: { progress: number }) => {
   const pos = getPosition();
 
   return (
-    <div
-      className="absolute pointer-events-none transition-all duration-700 ease-out"
-      style={{
-        left: pos.x - 14,
-        top: pos.y - 14,
-        transform: `rotate(${pos.angle - 90}deg)`,
+    <motion.div
+      className="absolute pointer-events-none"
+      animate={{
+        left: pos.x - 12,
+        top: pos.y - 12,
+        rotate: pos.angle - 90,
       }}
+      transition={{ type: "spring", stiffness: 100, damping: 15 }}
     >
-      <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center shadow-[0_0_16px_hsl(var(--primary)/0.6)]">
-        <Bus className="w-3.5 h-3.5 text-primary-foreground" />
+      <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-[0_0_14px_hsl(var(--primary)/0.6)]">
+        <Bus className="w-3 h-3 text-primary-foreground" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default RoadMap;
+export default JourneyMiniMap;

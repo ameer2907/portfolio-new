@@ -1,7 +1,7 @@
 import { GraduationCap, Calendar, Award } from "lucide-react";
 import JourneyStop from "./JourneyStop";
 
-const EducationSection = () => {
+const EducationSection = ({ isActive }: { isActive?: boolean }) => {
   return (
     <JourneyStop
       id="education"
@@ -9,6 +9,7 @@ const EducationSection = () => {
       title="Education"
       subtitle="The foundation of the journey"
       stopNumber={1}
+      isActive={isActive}
     >
       <div className="max-w-2xl mx-auto">
         <div className="glass-hover rounded-2xl p-8">
@@ -34,7 +35,7 @@ const EducationSection = () => {
                 </span>
               </div>
               <p className="mt-4 text-muted-foreground text-sm leading-relaxed">
-                Pursuing a comprehensive curriculum covering Data Structures, AI/ML, 
+                Pursuing a comprehensive curriculum covering Data Structures, AI/ML,
                 DBMS, Business Intelligence, and modern software development practices.
               </p>
             </div>
