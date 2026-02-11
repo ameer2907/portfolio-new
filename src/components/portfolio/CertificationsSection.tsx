@@ -14,7 +14,7 @@ const certifications = [
   { title: "NPTEL HCI", issuer: "NPTEL" },
 ];
 
-const CertificationsSection = () => {
+const CertificationsSection = ({ isActive }: { isActive?: boolean }) => {
   return (
     <JourneyStop
       id="certifications"
@@ -22,6 +22,7 @@ const CertificationsSection = () => {
       title="Certifications"
       subtitle="Validated knowledge and expertise"
       stopNumber={3}
+      isActive={isActive}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {certifications.map((cert, i) => (

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, Mail, Linkedin, Github, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const ContactSection = () => {
+const ContactSection = ({ isActive }: { isActive?: boolean }) => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const { toast } = useToast();
 
@@ -21,9 +21,8 @@ const ContactSection = () => {
   };
 
   return (
-    <JourneyStop id="contact" icon="📬" title="Get In Touch" subtitle="Let's connect and build something amazing">
+    <JourneyStop id="contact" icon="📬" title="Get In Touch" subtitle="Let's connect and build something amazing" isActive={isActive}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {/* Info */}
         <div className="space-y-6">
           <div className="glass-hover rounded-2xl p-6 space-y-4">
             <a href="tel:9087223978" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
@@ -56,7 +55,6 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="glass-hover rounded-2xl p-6 space-y-4">
           <Input
             placeholder="Your Name"

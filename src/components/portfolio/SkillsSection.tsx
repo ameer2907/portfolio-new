@@ -29,7 +29,7 @@ const skillCategories = [
   },
 ];
 
-const SkillsSection = () => {
+const SkillsSection = ({ isActive }: { isActive?: boolean }) => {
   return (
     <JourneyStop
       id="skills"
@@ -37,6 +37,7 @@ const SkillsSection = () => {
       title="Technical Skills"
       subtitle="Tools and technologies in my toolkit"
       stopNumber={2}
+      isActive={isActive}
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((cat) => (

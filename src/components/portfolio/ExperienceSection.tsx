@@ -1,7 +1,7 @@
 import JourneyStop from "./JourneyStop";
 import { Briefcase, BookOpen } from "lucide-react";
 
-const ExperienceSection = () => {
+const ExperienceSection = ({ isActive }: { isActive?: boolean }) => {
   return (
     <JourneyStop
       id="experience"
@@ -9,9 +9,9 @@ const ExperienceSection = () => {
       title="Experience"
       subtitle="Learning and growing professionally"
       stopNumber={5}
+      isActive={isActive}
     >
       <div className="max-w-3xl mx-auto space-y-6">
-        {/* Internship */}
         <div className="glass-hover rounded-2xl p-6">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
@@ -39,7 +39,6 @@ const ExperienceSection = () => {
           </div>
         </div>
 
-        {/* Learning Journey */}
         <div className="glass-hover rounded-2xl p-6">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
@@ -48,8 +47,8 @@ const ExperienceSection = () => {
             <div>
               <h3 className="font-heading font-semibold text-foreground text-lg">Learning Journey</h3>
               <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                Continuously expanding knowledge through online courses, self-learning, 
-                hackathon participation, and building practice projects in AI/ML, data science, 
+                Continuously expanding knowledge through online courses, self-learning,
+                hackathon participation, and building practice projects in AI/ML, data science,
                 and web development.
               </p>
             </div>
