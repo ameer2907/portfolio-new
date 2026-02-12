@@ -10,6 +10,7 @@ const EducationSection = ({ isActive }: { isActive?: boolean }) => {
       subtitle="The foundation of the journey"
       stopNumber={1}
       isActive={isActive}
+      accentColor="hsl(160,84%,45%)"
     >
       <div className="max-w-2xl mx-auto">
         <div className="glass-hover rounded-2xl p-8">

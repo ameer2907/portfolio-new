@@ -23,6 +23,7 @@ const CertificationsSection = ({ isActive }: { isActive?: boolean }) => {
       subtitle="Validated knowledge and expertise"
       stopNumber={3}
       isActive={isActive}
+      accentColor="hsl(280,80%,65%)"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {certifications.map((cert, i) => (

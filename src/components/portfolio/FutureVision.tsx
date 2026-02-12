@@ -11,6 +11,7 @@ const FutureVision = ({ isActive }: { isActive?: boolean }) => {
       subtitle="Where this journey is headed"
       stopNumber={6}
       isActive={isActive}
+      accentColor="hsl(38,92%,50%)"
     >
       <div className="relative max-w-3xl mx-auto text-center">
         {/* Glow background */}

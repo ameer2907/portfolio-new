@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/portfolio/Navbar";
 import JourneyMiniMap from "@/components/portfolio/JourneyMiniMap";
 import BusJourneyEngine from "@/components/portfolio/BusJourneyEngine";
+import ParallaxBackground from "@/components/portfolio/ParallaxBackground";
 import HeroSection from "@/components/portfolio/HeroSection";
 import EducationSection from "@/components/portfolio/EducationSection";
 import SkillsSection from "@/components/portfolio/SkillsSection";
@@ -29,6 +30,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
+      <ParallaxBackground />
       <Navbar />
       <JourneyMiniMap scrollProgress={scrollProgress} activeSection={activeSection} />
 

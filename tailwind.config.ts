@@ -68,6 +68,11 @@ export default {
           deep: "hsl(var(--navy-deep))",
           mid: "hsl(var(--navy-mid))",
         },
+        amber: "hsl(var(--amber))",
+        emerald: "hsl(var(--emerald))",
+        violet: "hsl(var(--violet))",
+        rose: "hsl(var(--rose))",
+        sky: "hsl(var(--sky))",
       },
       borderRadius: {
         lg: "var(--radius)",

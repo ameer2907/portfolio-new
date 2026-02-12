@@ -21,7 +21,7 @@ const ContactSection = ({ isActive }: { isActive?: boolean }) => {
   };
 
   return (
-    <JourneyStop id="contact" icon="📬" title="Get In Touch" subtitle="Let's connect and build something amazing" isActive={isActive}>
+    <JourneyStop id="contact" icon="📬" title="Get In Touch" subtitle="Let's connect and build something amazing" isActive={isActive} accentColor="hsl(190,100%,50%)">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div className="space-y-6">
           <div className="glass-hover rounded-2xl p-6 space-y-4">
