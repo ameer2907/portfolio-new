@@ -24,7 +24,7 @@
     --muted: 222 30% 15%;
     --muted-foreground: 215 20% 55%;
 
-    --accent: 190 100% 50%;
+    --accent: 280 80% 65%;
     --accent-foreground: 222 47% 8%;
 
     --destructive: 0 84% 60%;
@@ -48,6 +48,13 @@
     --cyan-glow: 190 100% 50%;
     --navy-deep: 222 47% 6%;
     --navy-mid: 222 47% 12%;
+
+    /* New vibrant accent colors */
+    --amber: 38 92% 50%;
+    --emerald: 160 84% 39%;
+    --violet: 280 80% 65%;
+    --rose: 350 89% 60%;
+    --sky: 199 89% 48%;
   }
 }
 
@@ -75,8 +82,16 @@
     @apply glass transition-all duration-300 hover:bg-card/60 hover:border-white/20 hover:shadow-[0_0_30px_rgba(0,212,255,0.1)];
   }
 
+  .glass-vibrant {
+    @apply bg-card/30 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)];
+  }
+
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(190,100%,50%)] to-[hsl(210,100%,60%)];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(190,100%,50%)] via-[hsl(210,100%,65%)] to-[hsl(280,80%,65%)];
+  }
+
+  .text-gradient-warm {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(38,92%,50%)] via-[hsl(350,89%,60%)] to-[hsl(280,80%,65%)];
   }
 
   .glow {
@@ -85,6 +100,10 @@
 
   .glow-sm {
     box-shadow: 0 0 10px hsla(190, 100%, 50%, 0.2);
+  }
+
+  .glow-multi {
+    box-shadow: 0 0 20px hsla(190, 100%, 50%, 0.25), 0 0 40px hsla(280, 80%, 65%, 0.1), 0 0 80px hsla(190, 100%, 50%, 0.05);
   }
 
   .section-fade {
@@ -129,6 +148,21 @@
   100% { background-position: 0 40px; }
 }
 
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100vw); }
+}
+
+@keyframes color-cycle {
+  0%, 100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(30deg); }
+}
+
 .animate-bus-bounce {
   animation: bus-bounce 1s ease-in-out infinite;
 }
@@ -147,6 +181,14 @@
 
 .animate-road-scroll {
   animation: road-scroll 1s linear infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 60s linear infinite;
 }
 
 html {

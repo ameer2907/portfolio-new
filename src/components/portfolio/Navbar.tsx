@@ -21,12 +21,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-vibrant border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <button onClick={() => scrollTo("hero")} className="flex items-center gap-2 text-primary font-heading font-bold text-lg">
-            <Bus className="w-5 h-5" />
-            <span>AMB</span>
+          <button onClick={() => scrollTo("hero")} className="flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-[hsl(210,100%,55%)] flex items-center justify-center group-hover:shadow-[0_0_15px_hsl(var(--primary)/0.5)] transition-shadow">
+              <Bus className="w-4 h-4 text-primary-foreground" />
+            </div>
+            <span className="text-primary font-heading font-bold text-lg">AMB</span>
           </button>
 
           <div className="hidden md:flex items-center gap-1">
@@ -42,7 +44,7 @@ const Navbar = () => {
             <a
               href="/resume.pdf"
               download
-              className="ml-2 flex items-center gap-1.5 px-3 py-2 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+              className="ml-2 flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-primary-foreground rounded-lg bg-gradient-to-r from-primary to-[hsl(210,100%,55%)] hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all"
             >
               <Download className="w-3.5 h-3.5" />
               Resume
@@ -56,7 +58,7 @@ const Navbar = () => {
       </div>
 
       {open && (
-        <div className="md:hidden glass border-t border-white/5 px-4 pb-4">
+        <div className="md:hidden glass-vibrant border-t border-white/5 px-4 pb-4">
           {navLinks.map((link) => (
             <button
               key={link.id}

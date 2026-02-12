@@ -40,6 +40,7 @@ const ProjectsSection = ({ isActive }: { isActive?: boolean }) => {
       subtitle="Ideas brought to life"
       stopNumber={4}
       isActive={isActive}
+      accentColor="hsl(350,89%,60%)"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, i) => (

@@ -10,6 +10,7 @@ const ExperienceSection = ({ isActive }: { isActive?: boolean }) => {
       subtitle="Learning and growing professionally"
       stopNumber={5}
       isActive={isActive}
+      accentColor="hsl(199,89%,55%)"
     >
       <div className="max-w-3xl mx-auto space-y-6">
         <div className="glass-hover rounded-2xl p-6">

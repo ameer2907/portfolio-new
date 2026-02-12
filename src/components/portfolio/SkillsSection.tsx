@@ -38,6 +38,7 @@ const SkillsSection = ({ isActive }: { isActive?: boolean }) => {
       subtitle="Tools and technologies in my toolkit"
       stopNumber={2}
       isActive={isActive}
+      accentColor="hsl(38,92%,55%)"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {skillCategories.map((cat) => (
